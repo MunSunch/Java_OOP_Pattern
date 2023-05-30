@@ -16,26 +16,19 @@ public class Person {
         this.address = Optional.of(address);
     }
 
-    public Person() {
-        this.age = null;
-    }
-
     public boolean hasAge() {
         return age.isPresent();
     }
+
     public void happyBirthday() {
-        if(hasAge()) {
-            age = OptionalInt.of(age.getAsInt() + 1);
-        }
+        age = OptionalInt.of(age.getAsInt()+1);
     }
 
     public boolean hasAddress() {
         return address.isPresent();
     }
     public void setAddress(String city) {
-        if(!hasAddress()) {
-            address = Optional.of(city);
-        }
+        address.map(oldCity -> oldCity=city);
     }
 
     public String getName() {
@@ -58,9 +51,7 @@ public class Person {
         return age.isPresent()? age.getAsInt(): 0;
     }
 
-    public String getAddress() {
-        return hasAddress()
-                ? address.get()
-                :"UNKNOWN";
-    }
+//    public String getAddress() {
+//        return
+//    }
 }
